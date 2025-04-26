@@ -53,5 +53,10 @@ namespace Ouch
                 WebView.CoreWebView2.Reload();
             }
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            WebView.Dispose();
+        }
     }
 }

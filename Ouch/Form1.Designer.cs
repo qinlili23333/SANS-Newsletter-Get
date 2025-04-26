@@ -52,8 +52,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1133, 686);
             Controls.Add(WebView);
-            Name = "Ouch";
+            Name = "Form1";
             Text = "Ouch";
+            FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)WebView).EndInit();
             ResumeLayout(false);
