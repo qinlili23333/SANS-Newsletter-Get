@@ -4,7 +4,7 @@ namespace Ouch
 {
     public partial class Form1 : Form
     {
-        private readonly Action<string> Log = Program.Log; 
+        public readonly Action<string> Log = Program.Log;
         public Form1()
         {
             Log("Loading Window...");
@@ -35,6 +35,7 @@ namespace Ouch
                 args.Response = response;
             };
             WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
+            WebView.CoreWebView2.AddHostObjectToScript("bridge", new WV2Bridge(this));
 
             Log("Loading Web Page...");
             WebView.CoreWebView2.Navigate("https://www.sans.org/newsletters/ouch/");
@@ -42,7 +43,7 @@ namespace Ouch
 
         private void CoreWebView2_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
         {
-            if(e.IsSuccess)
+            if (e.IsSuccess)
             {
                 Log("Page Loaded. Waiting for data...");
                 WebView.CoreWebView2.ExecuteScriptAsync(EmbedJS.JS.ExtractJSON);
