@@ -8,7 +8,7 @@ on:
       - cron: "0  0 * * *"
 
 jobs:
-  build:
+  get-newsletters:
     runs-on: windows-latest
 
     steps:
@@ -25,7 +25,7 @@ jobs:
       - name: Get SANS Newsletters
         run: Ouch\bin\Release\net9.0-windows\win-x64\publish\Ouch.exe
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: SANS Newsletters
           path: Ouch\bin\Release\net9.0-windows\win-x64\publish\output
