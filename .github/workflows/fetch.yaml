@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: SANS Newsletters
-          path: Ouch\bin\Release\net9.0-windows\win-x64\publish\output
+          path: output
