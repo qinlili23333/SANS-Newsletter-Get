@@ -34,11 +34,22 @@ namespace Ouch
                 CoreWebView2WebResourceResponse response = WebView.CoreWebView2.Environment.CreateWebResourceResponse(null, 200, "OK", "Content-Type: image/png");
                 args.Response = response;
             };
+            WebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
 
             Log("Loading Web Page...");
             WebView.CoreWebView2.Navigate("https://www.sans.org/newsletters/ouch/");
         }
 
-
+        private void CoreWebView2_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
+        {
+            if(e.IsSuccess)
+            {
+                Log("Page Loaded. Waiting for data...");
+            }
+            else
+            {
+                WebView.CoreWebView2.Reload();
+            }
+        }
     }
 }
