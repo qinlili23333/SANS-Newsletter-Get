@@ -12,4 +12,19 @@
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3179.45" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="EmbedJS\JS.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JS.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="EmbedJS\JS.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>JS.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

@@ -45,6 +45,7 @@ namespace Ouch
             if(e.IsSuccess)
             {
                 Log("Page Loaded. Waiting for data...");
+                WebView.CoreWebView2.ExecuteScriptAsync(EmbedJS.JS.ExtractJSON);
             }
             else
             {
