@@ -24,6 +24,14 @@ namespace Ouch
             WebView.CoreWebView2.Settings.IsStatusBarEnabled = false;
             WebView.CoreWebView2.Settings.IsBuiltInErrorPageEnabled = false;
             WebView.CoreWebView2.Navigate("https://www.sans.org/newsletters/ouch/");
+            // Image is useless for me, disable to save data
+            WebView.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Image);
+            WebView.CoreWebView2.WebResourceRequested += delegate (
+               object? sender, CoreWebView2WebResourceRequestedEventArgs args)
+            {
+                CoreWebView2WebResourceResponse response = WebView.CoreWebView2.Environment.CreateWebResourceResponse(null, 200, "OK", "Content-Type: image/png");
+                args.Response = response;
+            };
         }
     }
 }
