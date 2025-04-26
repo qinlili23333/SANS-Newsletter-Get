@@ -1,0 +1,31 @@
+name: Fetch SANS Newsletters
+
+on:
+  push:
+    branches:
+      - "main"
+  schedule:
+      - cron: "0  0 * * *"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+          include-prerelease: true
+      - name: Install dependencies
+        run: dotnet restore .\Ouch\Ouch.sln
+      - name: Build
+        run: dotnet publish -p:PublishReadyToRun=true --no-self-contained -r win-x64 -c Release .\Ouch\Ouch.sln
+      - name: Get SANS Newsletters
+        run: Ouch\bin\Release\net9.0-windows\win-x64\publish\Ouch.exe
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: SANS Newsletters
+          path: Ouch\bin\Release\net9.0-windows\win-x64\publish\output
