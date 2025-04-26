@@ -29,13 +29,13 @@
     let jsonDict = {};
     const getName = obj => {
         let title = obj[0].metainfo.browser_title;
-        if (title.indexOf("OUCH") > 0) {
+        if (title.indexOf("OUCH") >= 0) {
             return "OUCH";
         }
-        if (title.indexOf("@RISK") > 0) {
+        if (title.indexOf("@RISK") >= 0) {
             return "RISK";
         }
-        if (title.indexOf("NewsBites") > 0) {
+        if (title.indexOf("NewsBites") >= 0) {
             return "NB";
         }
     }
@@ -43,4 +43,9 @@
         jsonDict[getName(obj)] = JSON.stringify(obj);
     }
     await bridge.Log("Writing to disk...");
+    await bridge.WriteToDisk("ouch.json", jsonDict.OUCH);
+    await bridge.WriteToDisk("atrisk.json", jsonDict.RISK);
+    await bridge.WriteToDisk("newsbites.json", jsonDict.NB);
+    await bridge.Log("Exiting...");
+    await bridge.Exit();
 })();
