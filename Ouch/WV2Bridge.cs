@@ -19,6 +19,15 @@
             File.WriteAllText("output\\" + filename, content);
         }
 
+        public int Format()
+        {
+            if (Int32.Parse(Environment.GetCommandLineArgs()[1])>0)
+            {
+                return Int32.Parse(Environment.GetCommandLineArgs()[1]);
+            }
+            return 0;
+        }
+
         public void Exit()
         {
             Form1.Close();

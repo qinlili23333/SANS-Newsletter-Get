@@ -39,8 +39,12 @@
             return "NB";
         }
     }
+    const format = await bridge.Format();
+    if (format == 0) {
+        format = null;
+    }
     for (let obj of jsonObjList) {
-        jsonDict[getName(obj)] = JSON.stringify(obj);
+        jsonDict[getName(obj)] = JSON.stringify(obj, null, format);
     }
     await bridge.Log("Writing to disk...");
     await bridge.WriteToDisk("ouch.json", jsonDict.OUCH);
