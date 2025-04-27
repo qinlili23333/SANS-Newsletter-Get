@@ -39,7 +39,7 @@
             return "NB";
         }
     }
-    const format = await bridge.Format();
+    let format = await bridge.Format();
     if (format == 0) {
         format = null;
     }

@@ -21,7 +21,7 @@
 
         public int Format()
         {
-            if (Int32.Parse(Environment.GetCommandLineArgs()[1])>0)
+            if (Environment.GetCommandLineArgs().Length>1 && Int32.Parse(Environment.GetCommandLineArgs()[1])>0)
             {
                 return Int32.Parse(Environment.GetCommandLineArgs()[1]);
             }
