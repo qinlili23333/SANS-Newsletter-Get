@@ -48,7 +48,39 @@ namespace OuchDL
                 }
             }
             Log($"Found {FileList.Count} files for language '{language}'.");
-
+            foreach (var file in FileList)
+            {
+                string fileName = file.GetProperty("filename").GetString().Replace(".pdf",$"_{file.GetProperty("uid").GetString()}.pdf");
+                string fileUrl = file.GetProperty("url").GetString();
+                if(File.Exists(Path.Combine(outputFolder, fileName)))
+                {
+                    Log($"File {fileName} already exists, skipping download.");
+                    continue;
+                }
+                Log($"Downloading {fileName}...");
+                try
+                {
+                    using (var client = new HttpClient())
+                    {
+                        var response = client.GetAsync(fileUrl).Result;
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var content = response.Content.ReadAsByteArrayAsync().Result;
+                            string outputPath = Path.Combine(outputFolder, fileName);
+                            File.WriteAllBytes(outputPath, content);
+                            Log($"Downloaded and saved to {outputPath}");
+                        }
+                        else
+                        {
+                            Log($"Failed to download {fileName}: {response.ReasonPhrase}");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log($"Error downloading {fileName}: {ex.Message}");
+                }
+            }
         }
 
         public static void Log(string message)

@@ -2,7 +2,7 @@
   "profiles": {
     "OuchDL": {
       "commandName": "Project",
-      "commandLineArgs": "ouch.json Chinese output"
+      "commandLineArgs": "ouch.json English eng"
     }
   }
 }
