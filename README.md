@@ -12,5 +12,9 @@ I don't like the slow speed to load the website, so I wrote this tool to get the
 ## Future plans
 - Add another program to download the newsletter as PDF/EPUB for offline reading.  
 
+## Structure
+- `Ouch/` - Project to download JSON.  
+- `OuchDL/` - Project to download Ouch! newsletters in PDF with specific language.  
+
 ## CI
 You can get the latest newsletter JSON each day from GitHub Actions. [![Fetch SANS Newsletters](https://github.com/qinlili23333/SANS-Newsletter-Get/actions/workflows/fetch.yaml/badge.svg)](https://github.com/qinlili23333/SANS-Newsletter-Get/actions/workflows/fetch.yaml)  
