@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "OuchDL": {
+      "commandName": "Project",
+      "commandLineArgs": "ouch.json Chinese output"
+    }
+  }
+}
